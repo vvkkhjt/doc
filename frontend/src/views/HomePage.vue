@@ -9,9 +9,9 @@
               {{welcomeMessage}}
             </div>
             <div class="head-info-desc">
-              <p>{{user.roleName ? user.roleName : '暂无角色'}}</p>
+              <p>{{user.roleName ? user.roleName : 'No roles available at the moment'}}</p>
             </div>
-            <div class="head-info-time">上次登录时间：{{user.lastLoginTime ? user.lastLoginTime : '第一次访问系统'}}</div>
+            <div class="head-info-time">Last login time：{{user.lastLoginTime ? user.lastLoginTime : 'First time accessing the system'}}</div>
           </div>
         </a-col>
         <a-col :span="12">
@@ -21,32 +21,32 @@
               <a-col :span="4"></a-col>
               <a-col :span="4"></a-col>
               <a-col :span="4">
-                <head-info title="房屋数量" :content="housesNum" :center="false" :bordered="false"/>
+                <head-info title="Number of houses" :content="housesNum" :center="false" :bordered="false"/>
               </a-col>
               <a-col :span="4">
-                <head-info title="用水消耗" :content="water" :center="false" :bordered="false"/>
+                <head-info title="Water consumption" :content="water" :center="false" :bordered="false"/>
               </a-col>
               <a-col :span="4">
-                <head-info title="用电消耗" :content="electricity" :center="false" />
+                <head-info title="Electricity consumption" :content="electricity" :center="false" />
               </a-col>
               <a-col :span="4">
-                <head-info title="未缴费用" :content="unpaid" :center="false" />
+                <head-info title="Unpaid fees" :content="unpaid" :center="false" />
               </a-col>
             </a-row>
             <a-row class="more-info" v-else>
               <a-col :span="4"></a-col>
               <a-col :span="4"></a-col>
               <a-col :span="4">
-                <head-info title="业主数量" :content="ownerNum" :center="false" :bordered="false"/>
+                <head-info title="Number of homeowners" :content="ownerNum" :center="false" :bordered="false"/>
               </a-col>
               <a-col :span="4">
-                <head-info title="房屋数量" :content="housesNum" :center="false" :bordered="false"/>
+                <head-info title="Number of houses" :content="housesNum" :center="false" :bordered="false"/>
               </a-col>
               <a-col :span="4">
-                <head-info title="预收金额" :content="received" :center="false" />
+                <head-info title="Advance payment amount" :content="received" :center="false" />
               </a-col>
               <a-col :span="4">
-                <head-info title="已收金额" :content="advance" :center="false" />
+                <head-info title="Received amount" :content="advance" :center="false" />
               </a-col>
             </a-row>
           </div>
@@ -90,7 +90,7 @@
         </a-row>
       </a-col>
       <a-col :span="8" class="project-wrapper">
-        <a-card hoverable :loading="loading" title="公告信息">
+        <a-card hoverable :loading="loading" title="Announcement Information">
           <div>
             <a-list item-layout="vertical" :pagination="pagination" :data-source="bulletinList">
               <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
@@ -121,7 +121,7 @@ import HeadInfo from '@/views/common/HeadInfo'
 import Weather from '@/views/web/Weather'
 import {mapState} from 'vuex'
 import moment from 'moment'
-moment.locale('zh-cn')
+moment.locale('en')
 
 export default {
   name: 'HomePage',
@@ -349,7 +349,7 @@ export default {
     welcome () {
       const date = new Date()
       const hour = date.getHours()
-      let time = hour < 6 ? '早上好' : (hour <= 11 ? '上午好' : (hour <= 13 ? '中午好' : (hour <= 18 ? '下午好' : '晚上好')))
+      let time = hour < 6 ? 'Good morning' : (hour <= 11 ? 'Good morning' : (hour <= 13 ? 'Good noon' : (hour <= 18 ? 'Good afternoon' : 'Good evening')))
       return `${time}，${this.user.username}`
     }
   },

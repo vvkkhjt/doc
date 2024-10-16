@@ -74,7 +74,7 @@ public class TreeUtil {
         }
         List<VueRouter<T>> topRoutes = new ArrayList<>();
         VueRouter<T> router = new VueRouter<>();
-        router.setName("系统主页");
+        router.setName("HomePage");
         router.setPath("/home");
         router.setComponent("HomePageView");
         router.setIcon("home");
@@ -111,7 +111,7 @@ public class TreeUtil {
 
         ArrayList<VueRouter<T>> list = new ArrayList<>();
         VueRouter<T> root = new VueRouter<>();
-        root.setName("主页");
+        root.setName("Home");
         root.setComponent("MenuView");
         root.setIcon("none");
         root.setPath("/");

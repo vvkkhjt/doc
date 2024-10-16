@@ -1,6 +1,6 @@
 <template>
   <a-card :bordered="false" hoverable style="margin-top: 10px;background-color: #f9f9f9">
-    <div style="text-align: left;font-size: 14px;margin-bottom: 30px"><b>物业管理系统</b></div>
+    <div style="text-align: left;font-size: 14px;margin-bottom: 30px"><b>Property Management System</b></div>
     <div class="login">
       <a-form @submit.prevent="doLogin" :autoFormCreate="(form) => this.form = form">
         <div>
@@ -8,14 +8,14 @@
                    style="margin-bottom: 24px;"></a-alert>
           <a-form-item
             fieldDecoratorId="name"
-            :fieldDecoratorOptions="{rules: [{ required: true, message: '请输入账户名', whitespace: true}]}">
+            :fieldDecoratorOptions="{rules: [{ required: true, message: 'Please enter the account name', whitespace: true}]}">
             <a-input size="large">
               <a-icon slot="prefix" type="user"></a-icon>
             </a-input>
           </a-form-item>
           <a-form-item
             fieldDecoratorId="password"
-            :fieldDecoratorOptions="{rules: [{ required: true, message: '请输入密码', whitespace: true}]}">
+            :fieldDecoratorOptions="{rules: [{ required: true, message: 'Please input a password', whitespace: true}]}">
             <a-input size="large" type="password">
               <a-icon slot="prefix" type="lock"></a-icon>
             </a-input>
@@ -23,12 +23,12 @@
         </div>
         <a-form-item>
           <a-button :loading="loading" style="width: 100%; margin-top: 4px" size="large" htmlType="submit" type="primary">
-            登录
+            Login
           </a-button>
         </a-form-item>
-        <div>
+        <!-- <div>
           <a style="float: right" @click="regist">注册账户</a>
-        </div>
+        </div> -->
       </a-form>
     </div>
   </a-card>

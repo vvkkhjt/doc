@@ -7,7 +7,7 @@
           class="global-search"
           @select="onSelect"
           @search="handleSearch"
-          placeholder="请输入城市名">
+          placeholder="Please enter the city name">
           <a-input>
             <a-button slot="suffix" class="search-btn" type="primary" @click.stop="searchWeather">
               <a-icon type="search"/>
@@ -26,35 +26,35 @@
     </div>
     <div class="weather-area">
       <div class="weather-info">
-        <a-card :loading="loading" :title="this.weather.countyName + ' 当前天气'">
+        <a-card :loading="loading" :title="this.weather.countyName + ' Current Weather'">
           <a-row>
-            <a-col :span="8"><p>天气：{{this.weather.realtime.weather}}</p></a-col>
-            <a-col :span="8"><p>风向：{{this.weather.realtime.wD}}</p></a-col>
-            <a-col :span="8"><p>风力大小：{{this.weather.realtime.wS}}</p></a-col>
+            <a-col :span="8"><p>Weather：{{this.weather.realtime.weather}}</p></a-col>
+            <a-col :span="8"><p>Wind Direction：{{this.weather.realtime.wD}}</p></a-col>
+            <a-col :span="8"><p>Wind Force Size：{{this.weather.realtime.wS}}</p></a-col>
           </a-row>
           <a-row>
-            <a-col :span="8"><p>温度：{{this.weather.realtime.temp}}℃</p></a-col>
-            <a-col :span="8"><p>体感温度：{{this.weather.realtime.sendibleTemp}}℃</p></a-col>
-            <a-col :span="8"><p>空气湿度：{{this.weather.realtime.sD}}%</p></a-col>
+            <a-col :span="8"><p>Temperature：{{this.weather.realtime.temp}}℃</p></a-col>
+            <a-col :span="8"><p>Perceived Temperature：{{this.weather.realtime.sendibleTemp}}℃</p></a-col>
+            <a-col :span="8"><p>Air Humidity：{{this.weather.realtime.sD}}%</p></a-col>
           </a-row>
           <a-row>
-            <a-col :span="8"><p>更新时间：{{this.weather.realtime.time}}</p></a-col>
+            <a-col :span="8"><p>Update Time：{{this.weather.realtime.time}}</p></a-col>
           </a-row>
         </a-card>
       </div>
       <div class="weather-info">
-        <a-card :loading="loading" :title="this.weather.countyName + ' 未来天气'">
+        <a-card :loading="loading" :title="this.weather.countyName + ' Future Weather'">
           <a-row>
             <a-col :span="24" v-for="(w, index) in this.weather.weathers" :key="index">
               <template v-if="index !== 6">
-                <p>{{w.date}}【{{w.week}}】：日出时间 --- {{w.sun_rise_time}}      日落时间 --- {{w.sun_down_time}}      天气 --- {{w.weather}}</p>
+                <p>{{w.date}}【{{w.week}}】：Sunrise time --- {{w.sun_rise_time}}      Sunset time --- {{w.sun_down_time}}      天气 --- {{w.weather}}</p>
               </template>
             </a-col>
           </a-row>
         </a-card>
       </div>
       <div class="weather-info">
-        <a-card :loading="loading" :title="this.weather.countyName + ' 生活指数'">
+        <a-card :loading="loading" :title="this.weather.countyName + ' Life index'">
           <a-row>
             <a-col :span="24" v-for="(i, index) in this.weather.indexes" :key="index">
               <p>{{i.name}} --- {{i.content}}</p>
@@ -63,18 +63,18 @@
         </a-card>
       </div>
       <div class="weather-info" v-if="this.weather.alarms.length">
-        <a-card :loading="loading" :title="this.weather.countyName + ' 预警信息'">
+        <a-card :loading="loading" :title="this.weather.countyName + ' Warning information'">
           <a-col :span="24">
-            <p>预警标题 --- {{this.weather.alarms[0].alarmDesc}}</p>
-            <p>预警类型 --- {{this.weather.alarms[0].alarmTypeDesc}}</p>
-            <p>预警等级 --- {{this.weather.alarms[0].alarmLevelNoDesc}}</p>
-            <p>发布时间 --- {{this.weather.alarms[0].publishTime}}</p>
-            <p>预防措施 --- {{this.weather.alarms[0].precaution}}</p>
-            <a-popover title="预警详情">
+            <p>Warning Title --- {{this.weather.alarms[0].alarmDesc}}</p>
+            <p>Warning Type --- {{this.weather.alarms[0].alarmTypeDesc}}</p>
+            <p>Warning Level --- {{this.weather.alarms[0].alarmLevelNoDesc}}</p>
+            <p>Release Time --- {{this.weather.alarms[0].publishTime}}</p>
+            <p>Preventive Measure --- {{this.weather.alarms[0].precaution}}</p>
+            <a-popover title="Warning Details">
               <template slot="content">
                 <div style="max-width: 360px">{{this.weather.alarms[0].alarmContent}}</div>
               </template>
-              <p>预警详情 --- {{this.weather.alarms[0].alarmContent}}</p>
+              <p>Warning Details --- {{this.weather.alarms[0].alarmContent}}</p>
             </a-popover>
           </a-col>
         </a-card>
@@ -185,7 +185,7 @@ export default {
     },
     searchWeather () {
       if (!this.areaId) {
-        this.$message.warning('请选择城市')
+        this.$message.warning('Please select a city')
       } else {
         this.$get('weather?areaId=' + this.areaId).then((r) => {
           let data = JSON.parse(r.data.data)
@@ -241,17 +241,17 @@ export default {
             }
             this.$refs.seven.updateSeries([
               {
-                name: '最高温',
+                name: 'Highest temperature',
                 data: this.weather.day_c
               },
               {
-                name: '最低温',
+                name: 'Minimum temperature',
                 data: this.weather.night_c
               }
             ], true)
             this.$refs.future.updateSeries([
               {
-                name: '未来气温',
+                name: 'Future temperature',
                 data: this.weather.hours_c
               }
             ])
@@ -264,7 +264,7 @@ export default {
                 max: max + 5
               },
               title: {
-                text: `${this.weather.provinceName} - ${this.weather.countyName}未来七日气温`,
+                text: `${this.weather.provinceName} - ${this.weather.countyName}Temperature in the next seven days`,
                 align: 'center'
               }
             }, true, true)
@@ -273,14 +273,14 @@ export default {
                 categories: this.weather.timeArr
               },
               title: {
-                text: `${this.weather.provinceName} - ${this.weather.countyName}未来气温细节`,
+                text: `${this.weather.provinceName} - ${this.weather.countyName}Details of Future Temperature`,
                 align: 'center'
               }
             }, true, true)
           }
         }).catch((r) => {
           console.error(r)
-          this.$message.error('天气查询失败')
+          this.$message.error('Weather query failed')
         })
       }
     }
